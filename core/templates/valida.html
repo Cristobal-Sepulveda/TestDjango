@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Ejemplo de JavaScript - jQuery</title>
+  <meta charset="UTF-8">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.js"></script>
+  <style>
+    body {
+        font-family: Arial;
+      }
+
+    input {
+        float: left;
+        width: 200px;
+        margin-bottom: 10px;
+    }
+
+    label {
+        clear: both;
+        float: left;
+        width: 180px;
+    }
+
+    button {
+        clear: both;
+        float: left;
+        width: 50px;
+    }
+
+    .error-control {
+        border: 1px solid red;
+    }
+
+    label.error {
+        color: red;
+        width: 300px;
+        font-size: 0.8em;
+        margin-top: -5px;
+        margin-bottom: 10px;
+    }
+    
+    #caja{
+        margin-top:50px;
+        margin-left:20px;
+   
+    }
+
+
+  </style>
+  <script>
+
+      $(function() 
+      {
+        $("#mi-formulario").validate({
+             rules: {
+                    email: {
+                        required: true,
+                        email: true
+                    },
+                    password: "required",
+                    fono: "required",
+                    fecha: "required",
+                    password2: {
+                        required: true,
+                        equalTo: "#password"
+                    }   
+                    
+                }, //rules
+            messages: {
+                email: {
+                    required: 'Ingresa tu correo electrónico',
+                    email: 'Formato de correo no válido'
+                },
+                password: {
+                    required: 'Ingresa una contraseña',
+                    minlength: 'Caracteres insuficientes'
+                },
+                fono:{
+                    required: 'Ingrese un número de celular',
+                    minlength: 'Cantidad de digitos insuficiente'
+                },
+                fecha:{
+                    required: 'Seleccione una fecha válida',
+                    min: 'Fecha no corresponde'
+                },
+                password2: {
+                    required: 'Reingresa la contraseña',
+                    equalTo: 'Las contraseñas ingresadas no coinciden',
+                    minlength: 'Caracteres insuficientes'
+
+                }
+            }//messages
+        }); //$('#mi-formulario').validate
+    }); //function
+
+
+  </script>
+   
+</head>
+
+<body>
+    <h1>Validando Formulario con Jquery</h1>
+    <hr>
+    <div id="caja">
+    <form id="mi-formulario" action="index.html" method="post">
+        <label>Correo Electrónico: </label>
+        <input type="text" name="email" required placeholder="nombre@dominio.cl">
+      
+        <label>Telefono: </label>
+        <input type="number" name="fono" minlength="9" required>
+      
+        <label>Fecha: </label>
+        <input type="date" name="fecha" min="2018-01-01" required>
+
+        <label>Contraseña:</label>
+        <input type="password" id="password" name="password" minlength="8">
+      
+        <label>Reingresa contraseña: </label>
+        <input type="password" name="password2" minlength="8">
+      
+        <button>Enviar</button>
+      </form>
+    </div>
+</body>
+</html>
